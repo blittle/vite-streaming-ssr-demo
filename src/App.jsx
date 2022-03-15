@@ -12,8 +12,9 @@ import Html from "./Html";
 import Spinner from "./Spinner";
 import Layout from "./Layout";
 import NavBar from "./NavBar";
+import ClientWrapper from "./ClientWrapper.client";
 
-const Comments = lazy(() => import("./Comments"));
+const Comments = lazy(() => import("./Comments.server"));
 const Sidebar = lazy(() => import("./Sidebar"));
 const Post = lazy(() => import("./Post"));
 
@@ -45,7 +46,12 @@ function Content() {
         <section className="comments">
           <h2>Comments</h2>
           <Suspense fallback={<Spinner />}>
-            <Comments />
+            <ClientWrapper>
+              <Comments />
+            </ClientWrapper>
+            <ClientWrapper>
+              <Comments />
+            </ClientWrapper>
           </Suspense>
         </section>
         <h2>Thanks for reading!</h2>
