@@ -21,12 +21,12 @@ export function renderInNode({ res, head }) {
       <App head={head} />
     </DataProvider>,
     {
-      onCompleteShell() {
+      onAllReady() {
         res.statusCode = 200;
         res.setHeader("Content-type", "text/html");
         pipe(res);
       },
-      onErrorShell(x) {
+      onShellError(x) {
         res.statusCode = 500;
         res.send(
           `<!doctype html><p>An error ocurred:</p><pre>${error.message}</pre>`
